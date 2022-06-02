@@ -1,0 +1,30 @@
+CREATE TABLE request
+(
+    idR INT PRIMARY KEY AUTO_INCREMENT,
+    id INT,
+    groupe  VARCHAR(10) NOT NULL,
+    pairs  VARCHAR(2) NOT NULL,
+    subject  VARCHAR(100) NOT NULL,
+    date Date,
+    CONSTRAINT request_user_fk 
+    FOREIGN KEY (id)  REFERENCES user (id) ON DELETE CASCADE
+);
+
+CREATE TABLE user
+(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name  VARCHAR(55) NOT NULL,
+    login  VARCHAR(55) NOT NULL,
+    password  VARCHAR(55) NOT NULL,
+    email  VARCHAR(55) NOT NULL
+);
+
+INSERT user(name, login, password, email) VALUES ('Tom Cruz', 'tom', '1111', 'oleg@mail.com');
+INSERT user(name, login, password, email) VALUES ('Denny de Vito', 'denny', '1111', 'oleg@mail.com');
+INSERT user(name, login, password, email) VALUES ('Kim Bessinger', 'kim', '1111', 'oleg@mail.com');
+
+INSERT request(id, groupe, pairs, subject, date) VALUES (1, 'e1', '2', 'math', '2021-11-11');
+
+
+
+

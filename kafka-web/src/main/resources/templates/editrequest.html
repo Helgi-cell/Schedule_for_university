@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+     <meta charset="utf-8"/>
+    <title>EDIT REQUEST</title>
+</head>
+<body>
+<h3>Request edit</h3>
+<br/>
+<form th:method="POST" th:action="@{/updateRequest}" th:object="${request}">
+    <label for="idRequest">Enter idRequest: </label>
+    <input type="hidden" th:field="*{idRequest}" id="idRequest"/>
+    <br/>
+    <label for="idLector">Enter ID: </label>
+    <input type="hidden" th:field="*{idLector}" id="idLector"/>
+    <br/>
+    <label for="group">Enter groupe: </label>
+    <input type="hidden" th:field="*{group}" id="group"/>
+    <div style="color:red" th:if="${#fields.hasErrors('group')}" th:errors="*{group}">groupe Error</div>
+    <br/>
+    <label for="numberOfPairs">Enter pairs: </label>
+    <input type="text" th:field="*{numberOfPairs}" id="numberOfPairs"/>
+    <div style="color:red" th:if="${#fields.hasErrors('numberOfPairs')}" th:errors="*{NumberOfPairs}">groupe Error</div>
+    <br/>
+    <label for="subjectOfLector">Enter subject: </label>
+    <input type="text" th:field="*{subjectOfLector}" id="subjectOfLector"/>
+    <div style="color:red" th:if="${#fields.hasErrors('subjectOfLector')}" th:errors="*{subjectOfLector}">subject Error</div>
+    <br/>
+    <label for="date">Enter subject: </label>
+    <input type="hidden" th:field="*{date}" id="date"/>
+    <br/>
+      <input type="submit" value="Update request!"/>
+</form>
+
+
+</body>
+</html>

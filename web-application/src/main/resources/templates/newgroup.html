@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+     <meta charset="utf-8"/>
+    <title>EDIT</title>
+</head>
+<body>
+<center><h3>Create new group</h3></center>
+<center>
+<form th:method="POST" th:action="@{/newgroup}" th:object="${group}">
+
+    <label for="idGroup">ID : </label>
+    <input type="hidden" th:field="*{idGroup}" id="idGroup"/>
+    <div style="color:red" th:if="${#fields.hasErrors('idGroup')}" th:errors="*{idGroup}">Name Error</div>
+    <br/>
+
+    <label for="groupName">New group name: </label>
+    <input type="text" th:field="*{groupName}" id="groupName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('groupName')}" th:errors="*{groupName}">Name Error</div>
+    <br/>
+
+    <input type="submit" value="create group!"/>
+</form>
+</center>
+
+</body>
+</html>

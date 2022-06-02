@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+     <meta charset="utf-8"/>
+    <title>USER</title>
+<style type="text/css">
+   TABLE {
+    width: 1600px;
+   }
+   TH {
+    background: #4b0082; 
+    color: #fffff0;
+   }
+   TD, TH {
+    padding: 3px; 
+   }
+  </style>    
+
+</head>
+
+<body>
+<center><h3> Schedule for the group :
+    <td th:text="${group.groupName}"></td>
+</h3></center>
+<div>
+    <table  summary="Schedule for group" border="1" cellspacing="2" align="center" >
+         <caption>Users table</caption>
+         
+    <thead>
+    <tr>
+        <th>   Group     </th>
+        <th>   Pair     </th>
+        <th>   Monday   </th>
+        <th>   Tuesday   </th><!-- comment -->
+        <th>   Wednesday   </th>
+        <th>   Thursday       </th>
+        <th>   Friday       </th>
+        <th>   Saturday       </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="studentSchedule : ${studentsSchedule}"
+
+        th:style="${studentSchedule}? 'font-weight: 30;'">
+        <td th:text="${studentSchedule.groupe}"></td>
+        <td th:text="${studentSchedule.pair}"></td>
+        <td th:text="${studentSchedule.monday}" ></td>
+        <td th:text="${studentSchedule.tuesday}" ></td>
+        <td th:text="${studentSchedule.wednesday}" ></td>
+        <td th:text="${studentSchedule.thursday}" ></td>
+        <td th:text="${studentSchedule.friday}" ></td>
+        <td th:text="${studentSchedule.saturday}" ></td>
+    </tr>
+      </tbody>
+  </table>
+</div>
+    <form th:method="GET" th:action="@{/groups}">
+        <input type="submit" value="Back to groups page"/>
+    </form>
+    <br/>
+
+</body>
+     
+</html>
+
+

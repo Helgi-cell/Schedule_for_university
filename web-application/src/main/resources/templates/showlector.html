@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8"/>
+    <title>SHOW</title>
+    <style type="text/css">
+   TABLE {
+    width: 800px;
+   }
+   TH {
+    background: #4b0072;
+    color: #fff1f0;
+   }
+   TD, TH {
+    padding: 3px;
+   }
+
+    </style>
+
+
+</head>
+<body>
+
+<div>
+    <table summary=" Show Lector " border="1" cellspacing="2" align="center">
+        <caption>User data to change</caption>
+
+        <thead>
+        <tr>
+            <th> ID</th>
+            <th> Name</th>
+            <th> Login</th><!-- comment -->
+            <th> Password</th>
+            <th> Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <td th:text="${lector.idLector}"></td>
+        <td th:text="${lector.nameLector}"></td>
+        <td th:text="${lector.loginLector}"></td>
+        <td th:text="${lector.passwordLector}"></td>
+        <td th:text="${lector.emailLector}"></td>
+        </tbody>
+    </table>
+</div>
+>
+
+<div>
+
+    <table summary="actions" border="1" cellspacing="2" align="center">
+        <caption>Lector's data to change</caption>
+
+        <thead>
+        <tr>
+            <th> Edit lector</th>
+            <th> Edit requests of the lector</th>
+            <th> Delete lector</th><!-- comment -->
+            <th> Back to lectors table</th>
+            <th> Show schedule of the lector</th>
+        </tr>
+        </thead>
+        <tbody>
+        <td>
+            <form th:method="GET" th:action="@{/lector/update/{id} (id=${lector.idLector})}">
+                <input type="submit" value="press"/>
+            </form>
+        </td>
+        <td>
+            <form th:method="GET" th:action="@{/lector/requests/{id}(id=${lector.idLector})}">
+                <input type="submit" value="press"/>
+            </form>
+        </td>
+        <td>
+            <form th:method="GET" th:action="@{/lector/{id}/delete (id=${lector.idLector})}">
+                <input type="submit" value="press"/>
+            </form>
+        </td>
+        <td>
+            <form th:method="GET" th:action="@{/lectors}">
+                <input type="submit" value="back"/>
+            </form>
+        </td>
+        <td>
+            <form th:method="GET" th:action="@{/lectorschedule/{id} (id=${lector.idLector})}">
+                <input type="submit" value="show schedule"/>
+            </form>
+        </td>
+          </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

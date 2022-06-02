@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+     <meta charset="utf-8"/>
+    <title>USER</title>
+<style type="text/css">
+   TABLE {
+    width: 1600px;
+   }
+   TH {
+    background: #4b0082; 
+    color: #fffff0;
+   }
+   TD, TH {
+    padding: 3px; 
+   }
+  </style>    
+
+</head>
+
+<body>
+<center><h3> Schedule for the lector :
+    <td th:text="${lector.nameLector}"></td>
+</h3></center>
+<div>
+    <table  summary="Schedule for teacher" border="1" cellspacing="2" align="center" >
+         <caption>lector schedule </caption>
+         
+    <thead>
+    <tr>
+        <th>   Pair     </th>
+        <th>   Monday   </th>
+        <th>   Tuesday   </th><!-- comment -->
+        <th>   Wednesday   </th>
+        <th>   Thursday       </th>
+        <th>   Friday       </th>
+        <th>   Saturday       </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="lectorSchedule : ${lectorsSchedule}"
+
+        th:style="${lectorSchedule}? 'font-weight: 30;'">
+        <td th:text="${lectorSchedule.pair}"></td>
+        <td th:text="${lectorSchedule.monday}" ></td>
+        <td th:text="${lectorSchedule.tuesday}" ></td>
+        <td th:text="${lectorSchedule.wednesday}" ></td>
+        <td th:text="${lectorSchedule.thursday}" ></td>
+        <td th:text="${lectorSchedule.friday}" ></td>
+        <td th:text="${lectorSchedule.saturday}" ></td>
+    </tr>
+      </tbody>
+  </table>
+</div>
+    <form th:method="GET" th:action="@{/lectors}">
+        <input type="submit" value="Back to lectors page"/>
+    </form>
+    <br/>
+
+</body>
+     
+</html>
+
+

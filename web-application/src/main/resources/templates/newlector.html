@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    
+<head>
+     <meta charset="utf-8"/>
+    <title>NEW LECTOR</title>
+</head>
+<body>
+<div><center><h3>Creating new lector</h3></center></div>
+<center>
+<form th:method="POST" th:action="@{/newlector}" th:object="${lector}">
+    <label for="nameLector">Enter name of new lector: </label>
+    <input type="text" th:field="*{nameLector}" id="nameLector"/>
+    <div style="color:red" th:if="${#fields.hasErrors('nameLector')}" th:errors="*{nameLector}">Name Error</div>
+     <br/>
+    
+    <label for="loginLector">Enter   login: </label>
+    <input type="text" th:field="*{loginLector}" id="loginLector"/>
+    <div style="color:red" th:if="${#fields.hasErrors('loginLector')}" th:errors="*{loginLector}">Login Error</div>
+    <br/>
+    <label for="passwordLector">Enter password:</label>
+    <input type="text" th:field="*{passwordLector}" id="passwordLector"/>
+    <div style="color:red" th:if="${#fields.hasErrors('passwordLector')}" th:errors="*{passwordLector}">Password Error</div>
+     <br/>
+    <label for="emailLector">Enter    email: </label>
+    <input type="text" th:field="*{emailLector}" id="emailLector"/>
+    <div style="color:red" th:if="${#fields.hasErrors('emailLector')}" th:errors="*{emailLector}">Email Error</div>
+     <br/>
+    <input type="submit" value="Create new lector"/>
+</form>
+</center>
+</body>
+</html>

@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS user;
+
+DROP TABLE IF EXISTS request;
+
+DROP TABLE IF EXISTS groupe;
+

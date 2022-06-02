@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="web-application" />
+        <module name="rest-application" />
+        <module name="kafka-rest" />
+        <module name="service" />
+        <module name="kafka-web" />
+        <module name="rest-client" />
+        <module name="dao-jpa" />
+        <module name="dao-api" />
+        <module name="model" />
+        <module name="db-test" />
+        <module name="db-prod" />
+        <module name="service-api" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="daoAPI" target="11" />
+      <module name="daoJPA" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="dao-api" options="-parameters" />
+      <module name="dao-jpa" options="-parameters" />
+      <module name="daoAPI" options="-parameters" />
+      <module name="daoJPA" options="-parameters" />
+      <module name="db-prod" options="-parameters" />
+      <module name="db-test" options="-parameters" />
+      <module name="kafka-rest" options="-parameters" />
+      <module name="kafka-web" options="-parameters" />
+      <module name="model" options="-parameters" />
+      <module name="rest-application" options="-parameters" />
+      <module name="rest-client" options="-parameters" />
+      <module name="service" options="-parameters" />
+      <module name="service-api" options="-parameters" />
+      <module name="university" options="" />
+      <module name="web-application" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Requests</title>
+        <style type="text/css">
+            TABLE {
+                width: 1200px;
+            }
+            TH {
+                background: #4b0082; 
+                color: #fffff0; 
+            }
+            TD, TH {
+                padding: 3px; 
+            }
+        </style>    
+
+    </head>
+
+    <body>
+    <div>
+        <h3>  Table of requests :
+              <td th:text="${lector.nameLector}"></td>
+        </h3>
+    </div>
+
+      
+      <div>
+       <table  summary="Table requests" border="1" cellspacing="2" align="center" >
+            <caption>Lessons requests table</caption>
+            <thead>
+                <tr>
+                    <th>   GROUP  </th>
+                    <th>   PAIRS   </th>
+                    <th>   SUBJECT </th>
+                    <th>   Date of request </th>
+                    <th>   Edit request </th>
+                    <th>   Delete request </th>
+                 </tr>
+            </thead>
+            <tbody>
+                <tr th:each="request : ${requests}"
+                    th:style="${request}? 'font-weight: 30;'">
+                    <td th:text="${request.group}" ></td>
+                    <td th:text="${request.numberOfPairs}" ></td>
+                    <td th:text="${request.subjectOfLector}" ></td>
+                    <td th:text="${request.date}"></td>
+                    <td> 
+                        <form th:method="GET" th:action="@{/lector/request/update/{id} (id=${request.idRequest})}">
+                            <input type="submit" value="UPDATE"/>
+                        </form>    
+                    </td>
+
+                    <td> 
+                        <form th:method="GET" th:action="@{/lector/request/{id}/delete (id=${request.idRequest})}">
+                            <input type="submit" value="DELETE"/>
+                        </form>
+
+                    </td>    
+                </tr>
+            </tbody>
+        </table>
+        </div>
+<!--     -->
+<!--        <br/>-->
+<!--        <form th:method="GET" th:action="@{/request/newRequest/{id} (id=${id})}">-->
+<!--            <input type="submit" value="NEW REQUEST"/>                 -->
+<!--        </form>    -->
+<!--     -->
+
+        <br/>
+        <form th:method="GET" th:action="@{/lectors}">
+            <input type="submit" value="EXIT TO LECTORS TABLE"/>
+        </form>
+<!--
+
+         <br/>
+         <form th:method="GET" th:action="@{/serializator/save}">
+             <input type="submit" value="SAVE YOUR REQUESTS"/>
+         </form>
+
+-->
+
+    </body>
+
+</html>
+
+

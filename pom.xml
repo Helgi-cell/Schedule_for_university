@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+   		<artifactId>spring-boot-starter-parent</artifactId>
+   		<version>2.6.4</version>
+   		<relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+
+	<groupId>com.epam.brest</groupId>
+	<artifactId>university</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>university</name>
+	<description>Project for Spring Boot</description>
+	<packaging>pom</packaging>
+
+	<modules>
+	    <module>rest-application</module>
+	    <module>service</module>
+        <module>service-api</module>
+        <module>dao-jpa</module>
+        <module>dao-api</module>
+        <module>db</module>
+        <module>model</module>
+        <module>rest-client</module>
+        <module>web-application</module>
+        <module>kafka-web</module>
+        <module>kafka-rest</module>
+	</modules>
+
+	<properties>
+		<java.version>11</java.version>
+		        <spring-boot.version>2.6.4</spring-boot.version>
+		        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+                <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+                <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
+                <build-helper-maven-plugin>3.3.0</build-helper-maven-plugin>
+                <spring-boot-maven-plugin>2.6.3</spring-boot-maven-plugin>
+
+                <project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
+                <junit.utReportFolder>${project.testresult.directory}/test</junit.utReportFolder>
+                <junit.itReportFolder>${project.testresult.directory}/integrationTest</junit.itReportFolder>
+
+                <jacoco.it.execution.data.file>${project.build.directory}/coverage-reports/jacoco-it.exec
+                </jacoco.it.execution.data.file>
+                <jacoco.ut.execution.data.file>${project.build.directory}/coverage-reports/jacoco-ut.exec
+                </jacoco.ut.execution.data.file>
+	</properties>
+
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+		    <groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<version>${spring-boot.version}</version>
+		</dependency>
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>${spring-boot.version}</version>
+		</dependency>
+
+		<dependency>
+        	<groupId>org.springframework.boot</groupId>
+        	<artifactId>spring-boot-starter-data-jpa</artifactId>
+        	<version>${spring-boot.version}</version>
+        </dependency>
+
+	    <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+			<version>${spring-boot.version}</version>
+	    </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-failsafe-plugin -->
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>${maven-failsafe-plugin.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+
+    </dependencies>
+</dependencyManagement>
+
+ <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <release>${java.version}</release>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot-maven-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>${build-helper-maven-plugin}</version>
+                </plugin>
+               <plugin>
+                               <artifactId>maven-failsafe-plugin</artifactId>
+                               <version>${maven.failsafe.version}</version>
+                               <executions>
+                                   <execution>
+                                       <goals>
+                                           <goal>integration-test</goal>
+                                           <goal>verify</goal>
+                                       </goals>
+                                       <configuration>
+                                           <includes>
+                                               <include>**/*Test</include>
+                                           </includes>
+                                       </configuration>
+                                   </execution>
+                               </executions>
+                           </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

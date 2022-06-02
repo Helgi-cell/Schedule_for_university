@@ -1,0 +1,88 @@
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+     <meta charset="utf-8"/>
+    <title>Lectors</title>
+<style type="text/css">
+   TABLE {
+    width: 800px;
+   }
+   TH {
+    background: #4b0082; 
+    color: #fffff0;
+   }
+   TD, TH {
+    padding: 3px; 
+   }
+  </style>    
+
+</head>
+    
+        
+ 
+<body>
+    <center><h3> GROUPS </h3></center>
+   
+    <table  summary="Table of groups" border="1" cellspacing="2" align="center" >
+         <caption>Groups table</caption>
+         
+    <thead>
+    <tr>
+        <th>   Name   </th>
+        <th>   Update  </th>
+        <th>   Delete  </th>
+        <th>   Schedule  </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="group : ${groups}"
+
+        th:style="${group}? 'font-weight: 30;'">
+
+
+        <td th:text="${group.groupName}">
+        </td>
+
+        <td>
+                <form th:method="GET" th:action="@{/group/update/{id} (id=${group.idGroup})}">
+                <input type="submit" value="update"/>
+            </form>
+        </td>
+
+        <td>
+            <form th:method="GET" th:action="@{/group/delete/{id} (id=${group.idGroup})}">
+                <input type="submit" value="delete"/>
+            </form>
+        </td>
+
+        <td>
+        <form th:method="GET" th:action="@{/studentschedule/{id} (id=${group.idGroup})}">
+            <input type="submit" value="Schedule"/>
+        </form>
+        </td>
+
+    </tr>
+      </tbody>
+  </table>
+
+    <form th:method="GET" th:action="@{/group/new}">
+        <input type="submit" value="create new group"/>
+    </form>
+    <br/>
+
+
+    <br/>
+    <form th:method="GET" th:action="@{/lectors}">
+        <input type="submit" value="BACK TO LECTORS"/>
+    </form>
+
+</body>
+     
+</html>
+
+

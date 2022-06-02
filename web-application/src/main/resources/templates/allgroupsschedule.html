@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8"/>
+    <title>Schedule</title>
+    <style type="text/css">
+   TABLE {
+    width: 1600px;
+   }
+   TH {
+    background: #4b0082;
+    color: #fffff0;
+   }
+   TD, TH {
+    padding: 3px;
+   }
+    </style>
+</head>
+
+<body>
+<center><h2>Schedule to week for all groupes</h2></center>
+<form th:method="GET" th:action="@{/lectors}">
+    <input type="submit" value="Back to lectors page"/>
+</form>
+<div th:each="studentSchedule : ${studentsSchedule}">
+
+        <table summary="Schedule for students" border="1" cellspacing="1" align="center">
+               <thead>
+        <tr>
+            <th> Groupe </th>
+            <th> Pair</th>
+            <th> Monday</th>
+            <th> Tuesday</th>
+            <th> Wednesday</th>
+            <th> Thursday</th>
+            <th> Friday</th>
+            <th> Saturday</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="students : ${studentSchedule}"
+            th:style="${students}?  'font-weight: 30;' ">
+            <td th:text="${students.groupe}"></td>
+            <td th:text="${students.pair}"></td>
+            <td th:text="${students.monday}"></td>
+            <td th:text="${students.tuesday}"></td>
+            <td th:text="${students.wednesday}"></td>
+            <td th:text="${students.thursday}"></td>
+            <td th:text="${students.friday}"></td>
+            <td th:text="${students.saturday}"></td>
+        </tr>
+        </tbody>
+    </table>
+    </br>
+</div>
+</body>
+</br>
+
+
+</html>
