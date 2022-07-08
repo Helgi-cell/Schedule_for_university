@@ -23,7 +23,7 @@ public class LectorKafkaProducerServiceRest {
     private String updatedlector = "updatedlector";
     private String deletedlector = "deletedlector";
 
-    private String givelectorbyid = "givelectorbyid";
+    private String sendlectorbyid = "sendlectorbyid";
 
     public void sendGiveAllLectors(List<Lector> lectors) { listLectorKafkaTemplate.send(sendalllectors, lectors); }
     public void sendCreateNewLector(Lector lector) {
@@ -39,6 +39,6 @@ public class LectorKafkaProducerServiceRest {
     }
 
     public void sendGiveLectorById(Lector lector) {
-        lectorKafkaTemplate.send(givelectorbyid, lector);
+        lectorKafkaTemplate.send(sendlectorbyid, lector);
     }
 }

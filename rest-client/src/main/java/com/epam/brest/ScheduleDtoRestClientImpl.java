@@ -17,16 +17,15 @@ public class ScheduleDtoRestClientImpl implements ScheduleDtoServiceApi {
 
     private RestTemplate restTemplate;
 
-    public ScheduleDtoRestClientImpl (final RestTemplateBuilder restTemplateBuilder) {
+    public ScheduleDtoRestClientImpl(final RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
     }
 
 
     @Override
-    public Integer createScheduleService() {
+    public void createScheduleService() {
         logger.debug("Create schedule ()");
         ResponseEntity responseEntity = restTemplate.getForEntity("/schedule/create", Integer.class);
-        return (Integer) responseEntity.getBody();
     }
 
     @Override

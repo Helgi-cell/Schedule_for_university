@@ -1,6 +1,8 @@
-package com.epam.brest.kafkaweb.config;
+package com.epam.brest.kafkaweb.config.producer;
 
-import com.epam.brest.Group;
+import com.epam.brest.LectorsSchedule;
+import com.epam.brest.RequestFromLector;
+import com.epam.brest.StudentsSchedule;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,26 +18,13 @@ import java.util.List;
 import java.util.Map;
 
 @Configuration
-public class GroupKafkaProducerConfigWeb {
+public class ScheduleKafkaProducerConfigWeb {
+
     @Value(value = "${kafka.bootstrapAddress}")
     private String bootstrapAddress;
 
     @Bean
-    public ProducerFactory<String, String> stringGroupProducerFactory() {
-        Map<String, Object> configProps = new HashMap<>();
-        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
-        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        return new DefaultKafkaProducerFactory<>(configProps);
-    }
-
-    @Bean
-    public KafkaTemplate<String, String> stringGroupKafkaTemplate() {
-        return new KafkaTemplate<>(stringGroupProducerFactory());
-    }
-
-    @Bean
-    public ProducerFactory<String, Group> groupProducerFactory() {
+    public ProducerFactory<String, List<StudentsSchedule>> listStudentsScheduleProducerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -44,13 +33,12 @@ public class GroupKafkaProducerConfigWeb {
     }
 
     @Bean
-    public KafkaTemplate<String, Group> groupKafkaTemplate() {
-        return new KafkaTemplate<>(groupProducerFactory());
+    public KafkaTemplate<String, List<StudentsSchedule>> listStudentsScheduleKafkaTemplate() {
+        return new KafkaTemplate<>(listStudentsScheduleProducerFactory());
     }
 
-
     @Bean
-    public ProducerFactory<String, List<Group>> listGroupProducerFactory() {
+    public ProducerFactory<String, List<List<StudentsSchedule>>> listListStudentsScheduleProducerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -59,7 +47,35 @@ public class GroupKafkaProducerConfigWeb {
     }
 
     @Bean
-    public KafkaTemplate<String, List<Group>> listGroupKafkaTemplate() {
-        return new KafkaTemplate<>(listGroupProducerFactory());
+    public KafkaTemplate<String, List<List<StudentsSchedule>>> listListStudentsScheduleKafkaTemplate() {
+        return new KafkaTemplate<>(listListStudentsScheduleProducerFactory());
+    }
+
+    @Bean
+    public ProducerFactory<String, List<LectorsSchedule>> listLectorsScheduleProducerFactory() {
+        Map<String, Object> configProps = new HashMap<>();
+        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        return new DefaultKafkaProducerFactory<>(configProps);
+    }
+
+    @Bean
+    public KafkaTemplate<String, List<LectorsSchedule>> listLectorsScheduleKafkaTemplate() {
+        return new KafkaTemplate<>(listLectorsScheduleProducerFactory());
+    }
+
+    @Bean
+    public ProducerFactory<String, List<List<LectorsSchedule>>> listListLectorsScheduleProducerFactory() {
+        Map<String, Object> configProps = new HashMap<>();
+        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        return new DefaultKafkaProducerFactory<>(configProps);
+    }
+
+    @Bean
+    public KafkaTemplate<String, List<List<LectorsSchedule>>> listListLectorsScheduleKafkaTemplate() {
+        return new KafkaTemplate<>(listListLectorsScheduleProducerFactory());
     }
 }

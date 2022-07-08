@@ -35,6 +35,8 @@ public class DaoScheduleDtoTestIT {
     DaoLectorApi daoLector;
 
     @Autowired
+    Schedule schedule;
+    @Autowired
     DaoGroupApi daoGroup;
 /*
 
@@ -118,8 +120,8 @@ public class DaoScheduleDtoTestIT {
     @Test
     public void isSchedule(){
 
-        List<DaySchedule> schedule = daoScheduleDto.createSchedule();
-        assertTrue(schedule.size() == 84);
+        daoScheduleDto.createSchedule();
+        assertTrue(schedule.dayScheduleForAll.size() == 84);
         Integer idLector = daoLector.getLectorByName("Tom").getIdLector();
         Integer idGroup = daoGroup.getGroupByName("e1").getIdGroup();
         assertTrue(daoScheduleDto.getScheduleForLector(idLector).size() == 5);

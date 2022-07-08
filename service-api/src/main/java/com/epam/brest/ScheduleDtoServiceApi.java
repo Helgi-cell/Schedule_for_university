@@ -7,7 +7,7 @@ import java.util.List;
 @Component
 public interface ScheduleDtoServiceApi {
 
-    public Integer createScheduleService ();
+    public void createScheduleService ();
 
     public List<List<LectorsSchedule>> getScheduleForAllLectorsService();
 

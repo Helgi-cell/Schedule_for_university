@@ -31,6 +31,7 @@
       <module name="dao-jpa" options="-parameters" />
       <module name="daoAPI" options="-parameters" />
       <module name="daoJPA" options="-parameters" />
+      <module name="db" options="-parameters" />
       <module name="db-prod" options="-parameters" />
       <module name="db-test" options="-parameters" />
       <module name="kafka-rest" options="-parameters" />

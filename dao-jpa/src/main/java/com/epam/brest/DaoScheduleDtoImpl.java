@@ -35,7 +35,7 @@ public class DaoScheduleDtoImpl implements DaoScheduleDtoApi {
     public List<StudentsSchedule> studentSchedule = new ArrayList<>();
 
     @Override
-    public List<DaySchedule> createSchedule() {
+    public void createSchedule() {
         logger.info("Create schedule from the Lectors requests {}");
 
         List<String> groups = daoGroup.getAllGroupsNames();
@@ -55,7 +55,7 @@ public class DaoScheduleDtoImpl implements DaoScheduleDtoApi {
         studentSchedule = schedule.createScheduleForGroupe(groups);
         lectorSchedule = schedule.createScheduleForLectors(lectorNames);
 
-        return (List<DaySchedule>) scheduleForAll;
+       // return (List<DaySchedule>) scheduleForAll;
     }
 
     @Override

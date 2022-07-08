@@ -9,7 +9,7 @@ import java.util.List;
 @ComponentScan("com.epam.brest.*")
 public interface DaoScheduleDtoApi {
 
-    public List<DaySchedule> createSchedule ();
+    public void createSchedule ();
 
     public List<List<LectorsSchedule>> getScheduleForAllLectors();
 

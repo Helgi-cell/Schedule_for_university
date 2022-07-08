@@ -1,6 +1,7 @@
-package com.epam.brest.kafkarest.config.consumer;
+package com.epam.brest.kafkaweb.config.consumer;
 
 import com.epam.brest.Group;
+import com.epam.brest.Lector;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,47 +18,46 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@EnableKafka
 @Configuration
-public class GroupKafkaConsumerConfigRest {
+@EnableKafka
+public class LectorKafkaConsumerConfigWeb {
 
     @Value(value = "${kafka.bootstrapAddress}")
     private String bootstrapAddress;
 
-    private String group = "group";
+    private String lector = "lector";
 
-    private String listgroup = "listgroup";
-
+    private String listlector = "listlector";
 
     @Bean
-    public ConsumerFactory<String, Group> groupConsumerFactory() {
+    public ConsumerFactory<String, Lector> lectorConsumerFactory() {
         Map<String, Object> props = new HashMap<>();
 
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, group);
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, lector);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
         props.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer.class);
-        props.put(JsonDeserializer.VALUE_DEFAULT_TYPE, Group.class);
+        props.put(JsonDeserializer.VALUE_DEFAULT_TYPE, Lector.class);
         props.put(JsonDeserializer.TRUSTED_PACKAGES, "com.epam.brest.*");
 
-        return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), new JsonDeserializer<>(Group.class));
+        return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), new JsonDeserializer<>(Lector.class));
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, Group> groupKafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, Group> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(groupConsumerFactory());
+    public ConcurrentKafkaListenerContainerFactory<String, Lector> lectorKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, Lector> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(lectorConsumerFactory());
         return factory;
     }
 
 
     @Bean
-    public ConsumerFactory<String, List<Group>> listGroupConsumerFactory() {
+    public ConsumerFactory<String, List<Lector>> listLectorConsumerFactory() {
         Map<String, Object> props = new HashMap<>();
 
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, listgroup);
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, listlector);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
         props.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer.class);
@@ -68,10 +68,9 @@ public class GroupKafkaConsumerConfigRest {
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, List<Group>> listGroupKafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, List<Group>> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(listGroupConsumerFactory());
+    public ConcurrentKafkaListenerContainerFactory<String, List<Lector>> listLectorKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, List<Lector>> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(listLectorConsumerFactory());
         return factory;
     }
-
 }

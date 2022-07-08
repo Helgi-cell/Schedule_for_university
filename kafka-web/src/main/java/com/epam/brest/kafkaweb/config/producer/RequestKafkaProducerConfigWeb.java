@@ -1,6 +1,7 @@
-package com.epam.brest.kafkarest.config.producer;
+package com.epam.brest.kafkaweb.config.producer;
 
 import com.epam.brest.Group;
+import com.epam.brest.RequestFromLector;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,12 +17,12 @@ import java.util.List;
 import java.util.Map;
 
 @Configuration
-public class GroupKafkaProducerConfigRest {
+public class RequestKafkaProducerConfigWeb {
+
     @Value(value = "${kafka.bootstrapAddress}")
     private String bootstrapAddress;
-
     @Bean
-    public ProducerFactory<String, Group> groupProducerFactory() {
+    public ProducerFactory<String, RequestFromLector> requestFromLectorProducerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -30,13 +31,13 @@ public class GroupKafkaProducerConfigRest {
     }
 
     @Bean
-    public KafkaTemplate<String, Group> groupKafkaTemplate() {
-        return new KafkaTemplate<>(groupProducerFactory());
+    public KafkaTemplate<String, RequestFromLector> requestFromLectorKafkaTemplate() {
+        return new KafkaTemplate<>(requestFromLectorProducerFactory());
     }
 
 
     @Bean
-    public ProducerFactory<String, List<Group>> listGroupProducerFactory() {
+    public ProducerFactory<String, List<RequestFromLector>> listRequestFromLectorProducerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -45,9 +46,7 @@ public class GroupKafkaProducerConfigRest {
     }
 
     @Bean
-    public KafkaTemplate<String, List<Group>> listGroupKafkaTemplate() {
-        return new KafkaTemplate<>(listGroupProducerFactory());
+    public KafkaTemplate<String, List<RequestFromLector>> listRequestFromLectorKafkaTemplate() {
+        return new KafkaTemplate<>(listRequestFromLectorProducerFactory());
     }
-
-
 }

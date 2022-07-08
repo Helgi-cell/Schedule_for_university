@@ -20,9 +20,9 @@ public class ScheduleRest {
 
     @GetMapping("/schedule/create")
     @Transactional(readOnly = true)
-    public Integer createSchedule() {
+    public void createSchedule() {
         logger.debug("Create schedule({})");
-        return (Integer) scheduleDtoService.createScheduleService();
+        scheduleDtoService.createScheduleService();
     }
 
     @GetMapping("/schedule/alllectors")

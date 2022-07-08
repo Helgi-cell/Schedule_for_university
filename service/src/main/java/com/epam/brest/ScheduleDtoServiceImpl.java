@@ -21,9 +21,9 @@ public class ScheduleDtoServiceImpl implements ScheduleDtoServiceApi {
     DaoScheduleDtoApi daoScheduleDto;
 
     @Override
-    public Integer createScheduleService() {
+    public void createScheduleService() {
         logger.info("Create schedule {}");
-        return (Integer) daoScheduleDto.createSchedule().size();
+        daoScheduleDto.createSchedule();
     }
 
     @Override

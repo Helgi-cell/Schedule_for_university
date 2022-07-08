@@ -1,5 +1,6 @@
 package com.epam.brest;
 
+import com.epam.brest.dto.Schedule;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootApplication
 @SpringBootTest(classes= { LectorServiceImpl.class, RequestFromLectorServiceImpl.class, GroupServiceImpl.class
-        , DaoLectorImpl.class, DaoRequestFromLectorImpl.class, DaoGroupImpl.class})
+        , DaoLectorImpl.class, DaoRequestFromLectorImpl.class, DaoGroupImpl.class, Schedule.class})
 @ComponentScan("com.epam.brest")
 @Transactional()
 public class ScheduleDtoServiceImplTestIT {
@@ -28,6 +29,9 @@ public class ScheduleDtoServiceImplTestIT {
 
     @Autowired
     DaoGroupApi daoGroup;
+
+    @Autowired
+    Schedule schedule;
 
     @Autowired
     DaoLectorApi daoLector;
@@ -112,8 +116,8 @@ public class ScheduleDtoServiceImplTestIT {
 
     @Test
     public void isSchedule(){
-        Integer scheduleSize = scheduleDtoService.createScheduleService();
-        assertTrue(scheduleSize == 84);
+        scheduleDtoService.createScheduleService();
+        assertTrue(schedule.dayScheduleForAll.size() == 84);
         Integer idLector = daoLector.getLectorByName("Tom").getIdLector();
         Integer idGroup = daoGroup.getGroupByName("e2").getIdGroup();
         assertTrue(scheduleDtoService.getScheduleForLectorService(idLector).size() == 5);
